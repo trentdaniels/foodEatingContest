@@ -46,6 +46,13 @@ function isAlive(total) {
     }
 }
 
+function showResult(result, caption) {
+    const resultHeading = document.getElementById('result-heading');
+    const resultCaption = document.getElementById('result-caption');
+    resultHeading.innerHTML = `${result}`;
+    resultCaption.innerHTML = `${caption}`;
+}
+
 function handleFood() {
     let total = 0;
     let hotdogsEaten = calculateHotdogsEaten();
@@ -61,8 +68,10 @@ function handleFood() {
     total += beersDrinkin;
     total += nuggetsEaten;
     let result = isAlive(total);
+    showResult(total, result);
     console.log(result);
     console.log(total);
+    
 }
 
 handleFood();
