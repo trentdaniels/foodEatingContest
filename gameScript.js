@@ -1,48 +1,34 @@
-function calculateHotdogsEaten () {
-    let result = Math.round(Math.random() * 4);
-    document.getElementById('hotdog-num').innerHTML = `<p>${result}</p>`;
+
+
+function determineFoodAmountEaten(amountOfFood) {
+    let result = Math.round(Math.random() * amountOfFood);
     return result;
 }
 
-function calculateHamburgersEaten () {
-    let result = Math.round(Math.random() * 6);
-    document.getElementById('hamburger-num').innerHTML = `<p>${result}</p>`;
-    return result;
-}
-
-function calculateBigMacsEaten () {
-    let result = Math.round(Math.random() * 8); 
-    document.getElementById('bigmac-num').innerHTML = `<p>${result}</p>`;
-    return result;
-}
-
-function calculateFriesEaten () {
-    let result = Math.round(Math.random() * 10);
-    document.getElementById('fries-num').innerHTML = `<p>${result}</p>`;
-    return result;
-}
-
-function calculateBeersDrinken () {
-    let result = Math.round(Math.random() * 12);
-    document.getElementById('beer-num').innerHTML = `<p>${result}</p>`;
-    return result;
-}
-
-function calculateNuggetsEaten () {
-    let result = Math.round(Math.random() * 20);
-    document.getElementById('nugget-num').innerHTML = `<p>${result}</p>`;
-    return result;
+function updateFoodAmounts() {
+    let hotdogsEaten = determineFoodAmountEaten(4);
+    let burgersEaten = determineFoodAmountEaten(6);
+    let bigmacsEaten = determineFoodAmountEaten(10);
+    let friesEaten = determineFoodAmountEaten(12);
+    let beersDrinkin = determineFoodAmountEaten(15);
+    let nuggetsEaten = determineFoodAmountEaten(20);
+    document.getElementById('hotdog-num').innerHTML = `<p>${hotdogsEaten}</p>`;
+    document.getElementById('burger-num').innerHTML = `<p>${burgersEaten}</p>`;
+    document.getElementById('bigmacdog-num').innerHTML = `<p>${bigmacsEaten}</p>`;
+    document.getElementById('fries-num').innerHTML = `<p>${friesEaten}</p>`;
+    document.getElementById('beer-num').innerHTML = `<p>${beersDrinkin}</p>`;
+    document.getElementById('nugget-num').innerHTML = `<p>${nuggetsEaten}</p>`;
 }
 
 function isAlive(total) {
     if (total > 35) {
-        return 'Congratulations! You ate all of the food and lived to tell the tale easily!'
+        return 'You definitely died.'
     }
     else if (total >= 25 && total <=35) {
         return 'Wow, you barely made it. Try not to eat so much next time!'
     }
     else {
-        return 'You definitely died.'
+        return 'Congratulations! You ate all of the food and lived to tell the tale easily!'
     }
 }
 
@@ -61,18 +47,20 @@ function handleFood() {
     let friesEaten = calculateFriesEaten();
     let beersDrinkin = calculateBeersDrinken();
     let nuggetsEaten = calculateNuggetsEaten();
+
     total += hotdogsEaten;
     total += hamburgersEaten;
     total += bigmacsEaten;
     total += friesEaten;
     total += beersDrinkin;
     total += nuggetsEaten;
+
     let result = isAlive(total);
     showResult(total, result);
+
     console.log(result);
     console.log(total);
     
 }
 
-handleFood();
 
