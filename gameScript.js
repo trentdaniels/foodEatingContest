@@ -16,7 +16,7 @@ function calculateBigMacsEaten () {
     return result;
 }
 
-function CalculateFriesEaten () {
+function calculateFriesEaten () {
     let result = Math.round(Math.random() * 10);
     document.getElementById('fries-num').innerHTML = '<p>' + result + '</p>';
     return result;
@@ -36,14 +36,21 @@ function calculateNuggetsEaten () {
 
 function handleFood() {
     let total = 0;
-    total += setTimeout(calculateHotdogsEaten(), 1500);
-    total += setTimeout(calculateHamburgersEaten(), 3000);
-    total += setTimeout(calculateBigMacsEaten(), 4500);
-    total += setTimeout(CalculateFriesEaten(), 6000);
-    total += setTimeout(calculateBeersDrinken(), 7500);
-    total += setTimeout(calculateNuggetsEaten(), 9000);
+    let hotdogsEaten = calculateHotdogsEaten();
+    let hamburgersEaten = calculateHamburgersEaten();
+    let bigmacsEaten = calculateBigMacsEaten();
+    let friesEaten = calculateFriesEaten();
+    let beersDrinkin = calculateBeersDrinken();
+    let nuggetsEaten = calculateNuggetsEaten();
+    total += hotdogsEaten;
+    total += hamburgersEaten;
+    total += bigmacsEaten;
+    total += friesEaten;
+    total += beersDrinkin;
+    total += nuggetsEaten;
     let result = isAlive(total);
     console.log(result);
+    console.log(total);
 }
 
 handleFood();
