@@ -34,6 +34,18 @@ function calculateNuggetsEaten () {
     return result;
 }
 
+function isAlive(total) {
+    if (total > 35) {
+        return 'Congratulations! You ate all of the food and lived to tell the tale easily!'
+    }
+    else if (total >= 25 && total <=35) {
+        return 'Wow, you barely made it. Try not to eat so much next time!'
+    }
+    else {
+        return 'You definitely died.'
+    }
+}
+
 function handleFood() {
     let total = 0;
     let hotdogsEaten = calculateHotdogsEaten();
@@ -55,14 +67,3 @@ function handleFood() {
 
 handleFood();
 
-function isAlive(total) {
-    if (total > 35) {
-        return 'Congratulations! You ate all of the food and lived to tell the tale easily!'
-    }
-    else if (total >= 25 && total <=35) {
-        return 'Wow, you barely made it. Try not to eat so much next time!'
-    }
-    else {
-        return 'You definitely died.'
-    }
-}
