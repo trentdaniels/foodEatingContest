@@ -1,28 +1,33 @@
 
 
-function determineFoodAmountEaten(amountOfFood) {
-    let result = Math.round(Math.random() * amountOfFood);
+function determineFoodAmountEaten(maxAmountOfFood) {
+    let result = Math.round(Math.random() * maxAmountOfFood);
     return result;
 }
 
-function updateFoodAmounts() {
-    let hotdogsEaten = determineFoodAmountEaten(4);
-    let burgersEaten = determineFoodAmountEaten(6);
-    let bigmacsEaten = determineFoodAmountEaten(10);
-    let friesEaten = determineFoodAmountEaten(12);
-    let beersDrinkin = determineFoodAmountEaten(15);
-    let nuggetsEaten = determineFoodAmountEaten(20);
-    document.getElementById('hotdog-num').innerHTML = `<p>${hotdogsEaten}</p>`;
-    document.getElementById('burger-num').innerHTML = `<p>${burgersEaten}</p>`;
-    document.getElementById('bigmacdog-num').innerHTML = `<p>${bigmacsEaten}</p>`;
-    document.getElementById('fries-num').innerHTML = `<p>${friesEaten}</p>`;
-    document.getElementById('beer-num').innerHTML = `<p>${beersDrinkin}</p>`;
-    document.getElementById('nugget-num').innerHTML = `<p>${nuggetsEaten}</p>`;
+function getTotalFoodAmount() {
+    let hotdogsEaten = parseInt(document.getElementById('hotdog-num').innerHTML);
+    let burgersEaten = parseInt(document.getElementById('burger-num').innerHTML);
+    let bigmacsEaten = parseInt(document.getElementById('bigmac-num').innerHTML);
+    let friesEaten = parseInt(document.getElementById('fries-num').innerHTML);
+    let beersDrinkin = parseInt(document.getElementById('beer-num').innerHTML);
+    let nuggetsEaten = parseInt(document.getElementById('nugget-num').innerHTML);
+    let total = hotdogsEaten + burgersEaten + bigmacsEaten + friesEaten + beersDrinkin + nuggetsEaten;
+    return total;
+}
+
+function displayFoodAmounts() {
+    document.getElementById('hotdog-num').innerHTML = `${determineFoodAmountEaten(4)}`;
+    document.getElementById('burger-num').innerHTML = `${determineFoodAmountEaten(6)}`;
+    document.getElementById('bigmac-num').innerHTML = `${determineFoodAmountEaten(10)}`;
+    document.getElementById('fries-num').innerHTML = `${determineFoodAmountEaten(12)}`;
+    document.getElementById('beer-num').innerHTML = `${determineFoodAmountEaten(15)}`;
+    document.getElementById('nugget-num').innerHTML = `${determineFoodAmountEaten(20)}`;
 }
 
 function isAlive(total) {
     if (total > 35) {
-        return 'You definitely died.'
+        return 'You definitely died ate too much and died.'
     }
     else if (total >= 25 && total <=35) {
         return 'Wow, you barely made it. Try not to eat so much next time!'
@@ -40,26 +45,13 @@ function showResult(result, caption) {
 }
 
 function handleFood() {
-    let total = 0;
-    let hotdogsEaten = calculateHotdogsEaten();
-    let hamburgersEaten = calculateHamburgersEaten();
-    let bigmacsEaten = calculateBigMacsEaten();
-    let friesEaten = calculateFriesEaten();
-    let beersDrinkin = calculateBeersDrinken();
-    let nuggetsEaten = calculateNuggetsEaten();
-
-    total += hotdogsEaten;
-    total += hamburgersEaten;
-    total += bigmacsEaten;
-    total += friesEaten;
-    total += beersDrinkin;
-    total += nuggetsEaten;
-
-    let result = isAlive(total);
-    showResult(total, result);
+    displayFoodAmounts();
+    let result = getTotalFoodAmount();
+    let caption = isAlive(result);
+    showResult(result,caption);
 
     console.log(result);
-    console.log(total);
+    console.log(caption);
     
 }
 
