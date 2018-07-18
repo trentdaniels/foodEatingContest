@@ -27,7 +27,7 @@ function displayFoodAmounts() {
 
 function isAlive(total) {
     if (total > 35) {
-        return 'You definitely died ate too much and died.'
+        return 'You definitely ate too much and died.'
     }
     else if (total >= 25 && total <=35) {
         return 'Wow, you barely made it. Try not to eat so much next time!'
@@ -44,24 +44,55 @@ function showResult(result, caption) {
     resultCaption.innerHTML = `${caption}`;
 }
 
-function handleFood() {
+function handleBtnStyling() {
+    const playBtn = document.getElementById('play-btn');
+    const resetBtn = document.getElementById('reset-btn');
+
+    playBtn.classList.remove('is-primary');
+    playBtn.classList.add('is-light');
+    playBtn.disabled = true;
+
+    resetBtn.removeAttribute('disabled');
+    resetBtn.classList.remove('is-light');
+    resetBtn.classList.add('is-primary');
+}
+
+function playGame() {
     displayFoodAmounts();
     let result = getTotalFoodAmount();
     let caption = isAlive(result);
     showResult(result,caption);
-    stopGame();
-    console.log(result);
-    console.log(caption);
+    handleBtnStyling();
     
 }
 
-function stopGame() {
+function resetGame() {
+    document.getElementById('hotdog-num').innerHTML = ``;
+    document.getElementById('burger-num').innerHTML = ``;
+    document.getElementById('bigmac-num').innerHTML = ``;
+    document.getElementById('fries-num').innerHTML = ``;
+    document.getElementById('beer-num').innerHTML = ``;
+    document.getElementById('nugget-num').innerHTML = ``;
+
+    const resultHeading = document.getElementById('result-heading');
+    const resultCaption = document.getElementById('result-caption');
+    resultHeading.innerHTML = ``;
+    resultCaption.innerHTML = ``;
+
     const playBtn = document.getElementById('play-btn');
-    playBtn.classList.remove('is-primary');
-    playBtn.classList.add('is-light');
-    playBtn.disabled = true;
+    const resetBtn = document.getElementById('reset-btn');
+
+    playBtn.disabled=false;
+    resetBtn.disabled=true;
+
 }
 
+
+
+
 const playBtn = document.getElementById('play-btn');
-playBtn.addEventListener('click', handleFood);
+playBtn.addEventListener('click', playGame);
+
+const resetBtn = document.getElementById('reset-btn');
+resetBtn.addEventListener('click', resetGame);
 
