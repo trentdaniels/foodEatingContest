@@ -26,15 +26,25 @@ function displayFoodAmounts() {
 }
 
 function isAlive(total) {
+    const resultHeading = document.getElementById('result-heading');
+    const resultCaption = document.getElementById('result-caption');
+
     if (total > 35) {
+        resultCaption.classList.add('has-text-danger');
         return 'You definitely ate too much and died.'
     }
     else if (total >= 25 && total <=35) {
+        resultCaption.classList.add('has-text-warning');
         return 'Wow, you barely made it. Try not to eat so much next time!'
     }
     else {
+        resultCaption.classList.add('has-text-primary');
         return 'Congratulations! You ate all of the food and lived to tell the tale easily!'
     }
+}
+
+function handleResultStyling() {
+    
 }
 
 function showResult(result, caption) {
@@ -48,13 +58,11 @@ function handleBtnStyling() {
     const playBtn = document.getElementById('play-btn');
     const resetBtn = document.getElementById('reset-btn');
 
-    playBtn.classList.remove('is-primary');
-    playBtn.classList.add('is-light');
+    playBtn.classList.toggle('is-light')
     playBtn.disabled = true;
 
-    resetBtn.removeAttribute('disabled');
-    resetBtn.classList.remove('is-light');
-    resetBtn.classList.add('is-primary');
+    resetBtn.disabled= false;
+    resetBtn.classList.toggle('is-light');
 }
 
 function playGame() {
@@ -74,10 +82,12 @@ function resetGame() {
     document.getElementById('beer-num').innerHTML = ``;
     document.getElementById('nugget-num').innerHTML = ``;
 
+
     const resultHeading = document.getElementById('result-heading');
     const resultCaption = document.getElementById('result-caption');
     resultHeading.innerHTML = ``;
     resultCaption.innerHTML = ``;
+    resultCaption.classList.remove('has-text-primary','has-text-warning','has-text-danger');
 
     const playBtn = document.getElementById('play-btn');
     const resetBtn = document.getElementById('reset-btn');
@@ -85,6 +95,9 @@ function resetGame() {
     playBtn.disabled=false;
     resetBtn.disabled=true;
 
+    playBtn.classList.toggle('is-light');
+
+    resetBtn.classList.toggle('is-light');
 }
 
 
