@@ -28,18 +28,21 @@ function displayFoodAmounts() {
 function isAlive(total) {
     const resultHeading = document.getElementById('result-heading');
     const resultCaption = document.getElementById('result-caption');
+    const body = document.getElementById('body');
 
-    if (total > 35) {
+    if (total >= 47) {
         resultCaption.classList.add('has-text-danger');
+        body.style.backgroundColor = 'hsla(348, 100%, 61%, 0.3)';
         return 'You definitely ate too much and died.'
     }
-    else if (total >= 25 && total <=35) {
-        debugger;
+    else if (total >= 27 && total < 47) {
         resultCaption.classList.add('has-text-warning');
+        body.style.backgroundColor = 'hsla(48, 100%, 67%, 0.15)';
         return 'Wow, you barely made it. Try not to eat so much next time!'
     }
     else {
         resultCaption.classList.add('has-text-primary');
+        body.style.backgroundColor = 'hsla(171, 100%, 41%, 0.3)';
         return 'Congratulations! You ate all of the food and lived to tell the tale easily!'
     }
 }
@@ -67,21 +70,26 @@ function changeBoxBackground(idOfFoodItem,amountOfFoodPossible) {
     let foodEaten = parseInt(document.getElementById(idOfFoodItem).innerHTML);
     let box = document.getElementById(idOfFoodItem).parentNode;
 
-
     if (foodEaten >= 0.7 * amountOfFoodPossible) {
         box.classList.add('has-background-danger');
+        
+        
     }
     else if (foodEaten >= .4 * amountOfFoodPossible && foodEaten < 0.7 * amountOfFoodPossible) {
         box.classList.add('has-background-warning');
+        
     }
     else {
         box.classList.add('has-background-primary');
+        
     }
 }
 
 function resetBoxBackground(idOfFoodItem) {
     let foodItem = document.getElementById(idOfFoodItem);
+    const body = document.getElementById('body');
     foodItem.parentNode.classList.remove('has-background-danger','has-background-warning','has-background-primary');
+    body.style.backgroundColor = '#FFFFFF';
 }
 
 
