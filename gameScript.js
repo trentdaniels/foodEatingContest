@@ -66,6 +66,37 @@ function handleBtnStyling() {
     resetBtn.classList.toggle('is-light');
 }
 
+function handleBoxContents() {
+    let headings = document.getElementsByTagName('h3');
+    for(let i = 0; i < headings.length; i++) {
+        headings[i].classList.add('has-text-white');
+    }
+    let descriptions = document.querySelectorAll('.box p:nth-child(3)');
+    for (let i = 0; i < descriptions.length; i++) {
+        descriptions[i].classList.add('has-text-white');
+    }
+    let svgs = document.getElementsByTagName('svg');
+    for (let i = 0; i < svgs.length; i++) {
+        svgs[i].style.fill = '#FFFFFF';
+    }
+
+}
+
+function resetBoxContents() {
+    let headings = document.getElementsByTagName('h3');
+    for(let i = 0; i < headings.length; i++) {
+        headings[i].classList.remove('has-text-white');
+    }
+    let descriptions = document.querySelectorAll('.box p:nth-child(3)');
+    for (let i = 0; i < descriptions.length; i++) {
+        descriptions[i].classList.remove('has-text-white');
+    }
+    let svgs = document.getElementsByTagName('svg');
+    for (let i = 0; i < svgs.length; i++) {
+        svgs[i].style.fill = '#000000';
+    }
+}
+
 function changeBoxBackground(idOfFoodItem,amountOfFoodPossible) {
     let foodEaten = parseInt(document.getElementById(idOfFoodItem).innerHTML);
     let box = document.getElementById(idOfFoodItem).parentNode;
@@ -131,6 +162,7 @@ function playGame() {
     let result = getTotalFoodAmount();
     let caption = isAlive(result);
     showResult(result,caption);
+    handleBoxContents();
     changeBoxBackground('hotdog-num',4);
     changeBoxBackground('burger-num',6);
     changeBoxBackground('bigmac-num',10);
@@ -147,7 +179,7 @@ function resetGame() {
 
     resetButtons();
 
-    
+    resetBoxContents();
 
     resetBoxBackground('hotdog-num');
     resetBoxBackground('burger-num');

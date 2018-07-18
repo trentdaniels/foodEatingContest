@@ -6,15 +6,22 @@ img {
     width: 85%;
     transition: 0.3s ease;
 }
-svg:hover {
-    fill: #FFFFFF;
+svg {
+    width: 85%;
+}
+
+svg, h3, p:nth-child(3) {
+    transition: 0.4s ease;
+}
+p:nth-child(3) {
+    padding-top: 10px;
 }
 .box {
     background-color: white;
     transition: background-color 0.4s ease;
 }
-img:hover {
-    transform: rotateZ(30);
+svg:hover {
+    transform: rotateZ(30deg);
 }
 
 body {
