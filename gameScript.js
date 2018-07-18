@@ -30,20 +30,20 @@ function isAlive(total) {
     const resultCaption = document.getElementById('result-caption');
     const body = document.getElementById('body');
 
-    if (total >= 47) {
+    if (total >= 40) {
         resultCaption.classList.add('has-text-danger');
         body.style.backgroundColor = 'hsla(348, 100%, 61%, 0.3)';
-        return 'You definitely ate too much and died.'
+        return 'You ate too much and died. RIP';
     }
-    else if (total >= 27 && total < 47) {
+    else if (total >= 30 && total < 40) {
         resultCaption.classList.add('has-text-warning');
         body.style.backgroundColor = 'hsla(48, 100%, 67%, 0.15)';
-        return 'Wow, you barely made it. Try not to eat so much next time!'
+        return 'Wow, you barely made it. Try not to eat so much next time!';
     }
     else {
         resultCaption.classList.add('has-text-primary');
         body.style.backgroundColor = 'hsla(171, 100%, 41%, 0.3)';
-        return 'Congratulations! You ate all of the food and lived to tell the tale easily!'
+        return 'Congratulations! You ate all of the food and lived to tell the tale!';
     }
 }
 
@@ -51,7 +51,7 @@ function isAlive(total) {
 function showResult(result, caption) {
     const resultHeading = document.getElementById('result-heading');
     const resultCaption = document.getElementById('result-caption');
-    resultHeading.innerHTML = `${result}`;
+    resultHeading.innerHTML = `You ate ${result} different items of food!`;
     resultCaption.innerHTML = `${caption}`;
 }
 
@@ -67,7 +67,7 @@ function handleBtnStyling() {
 }
 
 function handleBoxContents() {
-    let headings = document.getElementsByTagName('h3');
+    let headings = document.getElementsByTagName('h4');
     for(let i = 0; i < headings.length; i++) {
         headings[i].classList.add('has-text-white');
     }
@@ -76,14 +76,16 @@ function handleBoxContents() {
         descriptions[i].classList.add('has-text-white');
     }
     let svgs = document.getElementsByTagName('svg');
+    
     for (let i = 0; i < svgs.length; i++) {
         svgs[i].style.fill = '#FFFFFF';
+        svgs[i].classList.add('spin');
     }
 
 }
 
 function resetBoxContents() {
-    let headings = document.getElementsByTagName('h3');
+    let headings = document.getElementsByTagName('h4');
     for(let i = 0; i < headings.length; i++) {
         headings[i].classList.remove('has-text-white');
     }
@@ -94,6 +96,7 @@ function resetBoxContents() {
     let svgs = document.getElementsByTagName('svg');
     for (let i = 0; i < svgs.length; i++) {
         svgs[i].style.fill = '#000000';
+        svgs[i].classList.remove('spin');
     }
 }
 
@@ -106,7 +109,7 @@ function changeBoxBackground(idOfFoodItem,amountOfFoodPossible) {
         
         
     }
-    else if (foodEaten >= .4 * amountOfFoodPossible && foodEaten < 0.7 * amountOfFoodPossible) {
+    else if (foodEaten >= .45 * amountOfFoodPossible && foodEaten < 0.6 * amountOfFoodPossible) {
         box.classList.add('has-background-warning');
         
     }
@@ -120,6 +123,7 @@ function resetBoxBackground(idOfFoodItem) {
     let foodItem = document.getElementById(idOfFoodItem);
     const body = document.getElementById('body');
     foodItem.parentNode.classList.remove('has-background-danger','has-background-warning','has-background-primary');
+    foodItem.parentNode.classList.add('has-background-white');
     body.style.backgroundColor = '#FFFFFF';
 }
 
@@ -137,8 +141,8 @@ function resetFoodAmounts () {
 function resetResults() {
     const resultHeading = document.getElementById('result-heading');
     const resultCaption = document.getElementById('result-caption');
-    resultHeading.innerHTML = ``;
-    resultCaption.innerHTML = ``;
+    resultHeading.innerHTML = `How much food did you eat?`;
+    resultCaption.innerHTML = `Click play to find out!`;
     resultCaption.classList.remove('has-text-primary','has-text-warning','has-text-danger');
 }
 

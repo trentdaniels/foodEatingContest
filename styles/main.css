@@ -7,10 +7,10 @@ img {
     transition: 0.3s ease;
 }
 svg {
-    width: 85%;
+    width: 75%;
 }
 
-svg, h3, p:nth-child(3) {
+svg, h4, p:nth-child(3) {
     transition: 0.4s ease;
 }
 p:nth-child(3) {
@@ -20,9 +20,9 @@ p:nth-child(3) {
     background-color: white;
     transition: background-color 0.4s ease;
 }
-svg:hover {
-    transform: rotateZ(30deg);
-}
+/* svg:hover {
+    animation: spin 0.9s ease;
+} */
 
 body {
     transition: background-color 0.6 ease;
@@ -36,6 +36,16 @@ body {
 .main-info {
     grid-row: 1 / span 1;
     
+}
+
+@keyframes spin {
+    0% { transform: rotateZ(0deg); }
+    50% { width: 65% }
+    100% { transform: rotateZ(360deg); }
+}
+
+.spin {
+    animation: spin 0.4s ease;
 }
 
 .food-categories {
