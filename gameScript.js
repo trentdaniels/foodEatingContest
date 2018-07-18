@@ -1,7 +1,7 @@
 
 
 function determineFoodAmountEaten(maxAmountOfFood) {
-    let result = Math.round(Math.random() * maxAmountOfFood);
+    let result = Math.ceil(Math.random() * maxAmountOfFood);
     return result;
 }
 
@@ -34,6 +34,7 @@ function isAlive(total) {
         return 'You definitely ate too much and died.'
     }
     else if (total >= 25 && total <=35) {
+        debugger;
         resultCaption.classList.add('has-text-warning');
         return 'Wow, you barely made it. Try not to eat so much next time!'
     }
@@ -43,9 +44,6 @@ function isAlive(total) {
     }
 }
 
-function handleResultStyling() {
-    
-}
 
 function showResult(result, caption) {
     const resultHeading = document.getElementById('result-heading');
@@ -65,30 +63,47 @@ function handleBtnStyling() {
     resetBtn.classList.toggle('is-light');
 }
 
-function playGame() {
-    displayFoodAmounts();
-    let result = getTotalFoodAmount();
-    let caption = isAlive(result);
-    showResult(result,caption);
-    handleBtnStyling();
-    
+function changeBoxBackground(idOfFoodItem,amountOfFoodPossible) {
+    let foodEaten = parseInt(document.getElementById(idOfFoodItem).innerHTML);
+    let box = document.getElementById(idOfFoodItem).parentNode;
+
+
+    if (foodEaten >= 0.7 * amountOfFoodPossible) {
+        box.classList.add('has-background-danger');
+    }
+    else if (foodEaten >= .4 * amountOfFoodPossible && foodEaten < 0.7 * amountOfFoodPossible) {
+        box.classList.add('has-background-warning');
+    }
+    else {
+        box.classList.add('has-background-primary');
+    }
 }
 
-function resetGame() {
+function resetBoxBackground(idOfFoodItem) {
+    let foodItem = document.getElementById(idOfFoodItem);
+    foodItem.parentNode.classList.remove('has-background-danger','has-background-warning','has-background-primary');
+}
+
+
+
+function resetFoodAmounts () {
     document.getElementById('hotdog-num').innerHTML = ``;
     document.getElementById('burger-num').innerHTML = ``;
     document.getElementById('bigmac-num').innerHTML = ``;
     document.getElementById('fries-num').innerHTML = ``;
     document.getElementById('beer-num').innerHTML = ``;
     document.getElementById('nugget-num').innerHTML = ``;
+}
 
-
+function resetResults() {
     const resultHeading = document.getElementById('result-heading');
     const resultCaption = document.getElementById('result-caption');
     resultHeading.innerHTML = ``;
     resultCaption.innerHTML = ``;
     resultCaption.classList.remove('has-text-primary','has-text-warning','has-text-danger');
+}
 
+function resetButtons() {
     const playBtn = document.getElementById('play-btn');
     const resetBtn = document.getElementById('reset-btn');
 
@@ -98,6 +113,40 @@ function resetGame() {
     playBtn.classList.toggle('is-light');
 
     resetBtn.classList.toggle('is-light');
+}
+
+
+
+function playGame() {
+    displayFoodAmounts();
+    
+    let result = getTotalFoodAmount();
+    let caption = isAlive(result);
+    showResult(result,caption);
+    changeBoxBackground('hotdog-num',4);
+    changeBoxBackground('burger-num',6);
+    changeBoxBackground('bigmac-num',10);
+    changeBoxBackground('fries-num',12);
+    changeBoxBackground('beer-num',15);
+    changeBoxBackground('nugget-num',20);
+    handleBtnStyling();
+    
+}
+
+function resetGame() {
+    resetFoodAmounts();
+    resetResults();
+
+    resetButtons();
+
+    
+
+    resetBoxBackground('hotdog-num');
+    resetBoxBackground('burger-num');
+    resetBoxBackground('bigmac-num');
+    resetBoxBackground('fries-num');
+    resetBoxBackground('beer-num');
+    resetBoxBackground('nugget-num');
 }
 
 
