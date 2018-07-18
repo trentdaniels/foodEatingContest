@@ -51,8 +51,21 @@ function isAlive(total) {
 function showResult(result, caption) {
     const resultHeading = document.getElementById('result-heading');
     const resultCaption = document.getElementById('result-caption');
-    resultHeading.innerHTML = `You ate ${result} different items of food!`;
+    
+
+    resultHeading.innerHTML = `You ate <span id="result-style">${result}</span> different items of food!`;
     resultCaption.innerHTML = `${caption}`;
+
+    const resultStyle = document.getElementById('result-style');
+    if (result >= 40) {
+        resultStyle.classList.add('has-text-danger');
+    }
+    else if (result >= 30 && result < 40) {
+        resultStyle.classList.add('has-text-warning');
+    }
+    else {
+        resultStyle.classList.add('has-text-primary');
+    }
 }
 
 function handleBtnStyling() {
@@ -82,6 +95,11 @@ function handleBoxContents() {
         svgs[i].classList.add('spin');
     }
 
+    let questions = document.querySelectorAll('.box p:nth-child(3)');
+    for (let i = 0; i < questions.length; i++) {
+        questions[i].innerHTML = 'Number Eaten:';
+    }
+
 }
 
 function resetBoxContents() {
@@ -98,6 +116,13 @@ function resetBoxContents() {
         svgs[i].style.fill = '#000000';
         svgs[i].classList.remove('spin');
     }
+
+    descriptions[0].innerHTML = 'How many hotdogs did you eat?';
+    descriptions[1].innerHTML = 'How many hamburgers did you eat?';
+    descriptions[2].innerHTML = 'How many boxes of fries did you eat?';
+    descriptions[3].innerHTML = 'How many Big Mac\'s did you eat?';
+    descriptions[4].innerHTML = 'How many beers did you drink?';
+    descriptions[5].innerHTML = 'How many chicken nuggets did you eat?';
 }
 
 function changeBoxBackground(idOfFoodItem,amountOfFoodPossible) {
@@ -144,6 +169,7 @@ function resetResults() {
     resultHeading.innerHTML = `How much food did you eat?`;
     resultCaption.innerHTML = `Click play to find out!`;
     resultCaption.classList.remove('has-text-primary','has-text-warning','has-text-danger');
+    resultHeading.classList.remove('has-text-primary','has-text-warning','has-text-danger');
 }
 
 function resetButtons() {
