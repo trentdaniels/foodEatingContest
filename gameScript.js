@@ -49,10 +49,19 @@ function handleFood() {
     let result = getTotalFoodAmount();
     let caption = isAlive(result);
     showResult(result,caption);
-
+    stopGame();
     console.log(result);
     console.log(caption);
     
 }
 
+function stopGame() {
+    const playBtn = document.getElementById('play-btn');
+    playBtn.classList.remove('is-primary');
+    playBtn.classList.add('is-light');
+    playBtn.disabled = true;
+}
+
+const playBtn = document.getElementById('play-btn');
+playBtn.addEventListener('click', handleFood);
 
