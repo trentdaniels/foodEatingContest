@@ -1,6 +1,13 @@
+html {
+    font-size: 15px;
+}
+
 img {
     width: 85%;
     transition: 0.3s ease;
+}
+svg:hover {
+    fill: #FFFFFF;
 }
 .box {
     background-color: white;
@@ -48,7 +55,7 @@ body {
 }
 button {
     margin-top: 20px;
-    width: 20%;
+    width: 15%;
 }
 
 
