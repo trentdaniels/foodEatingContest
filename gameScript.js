@@ -1,7 +1,7 @@
 
 
 function determineFoodAmountEaten(maxAmountOfFood) {
-    let result = Math.ceil(Math.random() * maxAmountOfFood);
+    let result = Math.round(Math.random() * maxAmountOfFood);
     return result;
 }
 
@@ -130,10 +130,10 @@ function changeBoxBackground(idOfFoodItem,amountOfFoodPossible) {
     let foodEaten = parseInt(document.getElementById(idOfFoodItem).innerHTML);
     let box = document.getElementById(idOfFoodItem).parentNode;
         
-    if (foodEaten >= Math.ceil(0.7 * amountOfFoodPossible)) {
+    if (foodEaten >= Math.round(0.7 * amountOfFoodPossible)) {
         box.classList.add('has-background-danger');
     }
-    else if (foodEaten >= Math.ceil(0.45 * amountOfFoodPossible)) {
+    else if (foodEaten >= Math.round(0.45 * amountOfFoodPossible)) {
         box.classList.add('has-background-warning');
     }
     else {
@@ -149,10 +149,10 @@ function changeAmountDescription() {
         let description = arrayOfFoodValues[i].nextElementSibling;
         description.classList.add('has-text-white', 'subtitle', 'is-6');
 
-        if (foodValue >=  Math.ceil(0.7 * arrayOfPossibilities[i])) {
+        if (foodValue >=  Math.round(0.7 * arrayOfPossibilities[i])) {
             document.getElementsByClassName('resulting-text')[i].innerHTML = 'Too much :\'(';
         }
-        else if (foodValue >= Math.ceil(0.45 * arrayOfPossibilities[i])) {
+        else if (foodValue >= Math.round(0.45 * arrayOfPossibilities[i])) {
             document.getElementsByClassName('resulting-text')[i].innerHTML = 'That\'s a lot.. :/';
         }
         else {
