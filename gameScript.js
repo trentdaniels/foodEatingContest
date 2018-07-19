@@ -26,16 +26,15 @@ function displayFoodAmounts() {
 }
 
 function isAlive(total) {
-    const resultHeading = document.getElementById('result-heading');
     const resultCaption = document.getElementById('result-caption');
     const body = document.getElementById('body');
 
-    if (total >= 40) {
+    if (total >= 43) {
         resultCaption.classList.add('has-text-danger');
         body.style.backgroundColor = 'hsla(348, 100%, 61%, 0.3)';
         return 'You ate too much and died. RIP';
     }
-    else if (total >= 30 && total < 40) {
+    else if (total >= 30) {
         resultCaption.classList.add('has-text-warning');
         body.style.backgroundColor = 'hsla(48, 100%, 67%, 0.15)';
         return 'Wow, you barely made it. Try not to eat so much next time!';
@@ -57,10 +56,10 @@ function showResult(result, caption) {
     resultCaption.innerHTML = `${caption}`;
 
     const resultStyle = document.getElementById('result-style');
-    if (result >= 40) {
+    if (result >= 43) {
         resultStyle.classList.add('has-text-danger');
     }
-    else if (result >= 30 && result < 40) {
+    else if (result >= 30) {
         resultStyle.classList.add('has-text-warning');
     }
     else {
@@ -93,6 +92,7 @@ function handleBoxContents() {
     for (let i = 0; i < svgs.length; i++) {
         svgs[i].style.fill = '#FFFFFF';
         svgs[i].classList.add('spin');
+        svgs[i].style.width = '75%';
     }
 
     let questions = document.querySelectorAll('.box p:nth-child(3)');
@@ -115,6 +115,7 @@ function resetBoxContents() {
     for (let i = 0; i < svgs.length; i++) {
         svgs[i].style.fill = '#000000';
         svgs[i].classList.remove('spin');
+        svgs[i].style.width = '65%';
     }
 
     descriptions[0].innerHTML = 'How many hotdogs did you eat?';
@@ -128,19 +129,35 @@ function resetBoxContents() {
 function changeBoxBackground(idOfFoodItem,amountOfFoodPossible) {
     let foodEaten = parseInt(document.getElementById(idOfFoodItem).innerHTML);
     let box = document.getElementById(idOfFoodItem).parentNode;
-
-    if (foodEaten >= 0.7 * amountOfFoodPossible) {
+        
+    if (foodEaten >= Math.ceil(0.7 * amountOfFoodPossible)) {
         box.classList.add('has-background-danger');
-        
-        
     }
-    else if (foodEaten >= .45 * amountOfFoodPossible && foodEaten < 0.6 * amountOfFoodPossible) {
+    else if (foodEaten >= Math.ceil(0.45 * amountOfFoodPossible)) {
         box.classList.add('has-background-warning');
-        
     }
     else {
         box.classList.add('has-background-primary');
-        
+    }
+}
+
+function changeAmountDescription() {
+    let arrayOfPossibilities = [4,6,10,12,15,20];
+    let arrayOfFoodValues = document.querySelectorAll('p:nth-child(4)');
+    for (let i = 0; i < arrayOfFoodValues.length; i++) {
+        let foodValue = parseInt(arrayOfFoodValues[i].innerHTML);
+        let description = arrayOfFoodValues[i].nextElementSibling;
+        description.classList.add('has-text-white', 'subtitle', 'is-6');
+
+        if (foodValue >=  Math.ceil(0.7 * arrayOfPossibilities[i])) {
+            document.getElementsByClassName('resulting-text')[i].innerHTML = 'Too much :\'(';
+        }
+        else if (foodValue >= Math.ceil(0.45 * arrayOfPossibilities[i])) {
+            document.getElementsByClassName('resulting-text')[i].innerHTML = 'That\'s a lot.. :/';
+        }
+        else {
+            document.getElementsByClassName('resulting-text')[i].innerHTML = 'Yum :)';
+        }
     }
 }
 
@@ -150,6 +167,12 @@ function resetBoxBackground(idOfFoodItem) {
     foodItem.parentNode.classList.remove('has-background-danger','has-background-warning','has-background-primary');
     foodItem.parentNode.classList.add('has-background-white');
     body.style.backgroundColor = '#FFFFFF';
+
+    let resultingTexts = document.getElementsByClassName('resulting-text');
+    for (let i = 0; i < resultingTexts.length; i++) {
+        resultingTexts[i].innerHTML = '';
+    }
+
 }
 
 
@@ -193,12 +216,24 @@ function playGame() {
     let caption = isAlive(result);
     showResult(result,caption);
     handleBoxContents();
-    changeBoxBackground('hotdog-num',4);
-    changeBoxBackground('burger-num',6);
-    changeBoxBackground('bigmac-num',10);
-    changeBoxBackground('fries-num',12);
-    changeBoxBackground('beer-num',15);
-    changeBoxBackground('nugget-num',20);
+    changeBoxBackground('hotdog-num', 4);
+    changeAmountDescription();
+
+    changeBoxBackground('burger-num', 6);
+    changeAmountDescription();
+
+    changeBoxBackground('fries-num', 10);
+    changeAmountDescription();
+
+    changeBoxBackground('bigmac-num', 12);
+    changeAmountDescription();
+
+    changeBoxBackground('beer-num', 15);
+    changeAmountDescription();
+
+    changeBoxBackground('nugget-num', 20);
+    changeAmountDescription();
+
     handleBtnStyling();
     
 }

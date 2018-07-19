@@ -7,7 +7,7 @@ img {
     transition: 0.3s ease;
 }
 svg {
-    width: 75%;
+    width: 65%;
 }
 
 svg, h4, p:nth-child(3) {
@@ -39,9 +39,9 @@ body {
 }
 
 @keyframes spin {
-    0% { transform: rotateZ(0deg); }
-    50% { width: 65% }
-    100% { transform: rotateZ(360deg); }
+    0% { transform: rotateZ(0deg);}
+    
+    100% { transform: rotateZ(360deg);}
 }
 
 .spin {
