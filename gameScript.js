@@ -93,8 +93,10 @@ function handleBoxContents() {
     
     for (let i = 0; i < svgs.length; i++) {
         svgs[i].style.fill = '#FFFFFF';
-        svgs[i].classList.add('spin');
-        svgs[i].style.width = '75%';
+        setTimeout(function() {
+            svgs[i].classList.add('spin');
+            svgs[i].style.width = '75%';
+        }, i * 250);
     }
 
     let questions = document.querySelectorAll('.box p:nth-child(3)');
@@ -183,7 +185,7 @@ function enlargeNumbers () {
         
         setTimeout(function () {
             values[i].classList.add('enlarge');
-        }, (i+1) * 250);
+        }, i * 250);
     }
 }
 
