@@ -17,13 +17,15 @@ function getTotalFoodAmount() {
 }
 
 function displayFoodAmounts() {
-    document.getElementById('hotdog-num').innerHTML = `${determineFoodAmountEaten(4)}`;
-    document.getElementById('burger-num').innerHTML = `${determineFoodAmountEaten(6)}`;
-    document.getElementById('bigmac-num').innerHTML = `${determineFoodAmountEaten(10)}`;
-    document.getElementById('fries-num').innerHTML = `${determineFoodAmountEaten(12)}`;
-    document.getElementById('beer-num').innerHTML = `${determineFoodAmountEaten(15)}`;
-    document.getElementById('nugget-num').innerHTML = `${determineFoodAmountEaten(20)}`;
+    let hotdogs = document.getElementById('hotdog-num').innerHTML = `${determineFoodAmountEaten(4)}`;
+    let burgers = document.getElementById('burger-num').innerHTML = `${determineFoodAmountEaten(6)}`;
+    let bigmacs = document.getElementById('bigmac-num').innerHTML = `${determineFoodAmountEaten(10)}`;
+    let fries = document.getElementById('fries-num').innerHTML = `${determineFoodAmountEaten(12)}`;
+    let beers = document.getElementById('beer-num').innerHTML = `${determineFoodAmountEaten(15)}`;
+    let nuggets = document.getElementById('nugget-num').innerHTML = `${determineFoodAmountEaten(20)}`;
+
 }
+
 
 function isAlive(total) {
     const resultCaption = document.getElementById('result-caption');
@@ -175,6 +177,16 @@ function resetBoxBackground(idOfFoodItem) {
 
 }
 
+function enlargeNumbers () {
+    let values = document.querySelectorAll('p:nth-child(4)');
+    for (let i = 0; i < values.length; i++) {
+        
+        setTimeout(function () {
+            values[i].classList.add('enlarge');
+        }, (i+1) * 250);
+    }
+}
+
 
 
 function resetFoodAmounts () {
@@ -184,6 +196,10 @@ function resetFoodAmounts () {
     document.getElementById('fries-num').innerHTML = ``;
     document.getElementById('beer-num').innerHTML = ``;
     document.getElementById('nugget-num').innerHTML = ``;
+    let values = document.querySelectorAll('p:nth-child(4)');
+    for (let i = 0; i < values.length; i++) {
+        values[i].classList.remove('enlarge');
+    }
 }
 
 function resetResults() {
@@ -233,6 +249,8 @@ function playGame() {
 
     changeBoxBackground('nugget-num', 20);
     changeAmountDescription();
+
+    enlargeNumbers();
 
     handleBtnStyling();
     
