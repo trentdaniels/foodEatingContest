@@ -1,5 +1,3 @@
-
-
 function determineFoodAmountEaten(maxAmountOfFood) {
     let result = Math.round(Math.random() * maxAmountOfFood);
     return result;
@@ -17,12 +15,12 @@ function getTotalFoodAmount() {
 }
 
 function displayFoodAmounts() {
-    let hotdogs = document.getElementById('hotdog-num').innerHTML = `${determineFoodAmountEaten(4)}`;
-    let burgers = document.getElementById('burger-num').innerHTML = `${determineFoodAmountEaten(6)}`;
-    let bigmacs = document.getElementById('bigmac-num').innerHTML = `${determineFoodAmountEaten(10)}`;
-    let fries = document.getElementById('fries-num').innerHTML = `${determineFoodAmountEaten(12)}`;
-    let beers = document.getElementById('beer-num').innerHTML = `${determineFoodAmountEaten(15)}`;
-    let nuggets = document.getElementById('nugget-num').innerHTML = `${determineFoodAmountEaten(20)}`;
+    document.getElementById('hotdog-num').innerHTML = `${determineFoodAmountEaten(4)}`;
+    document.getElementById('burger-num').innerHTML = `${determineFoodAmountEaten(6)}`;
+    document.getElementById('bigmac-num').innerHTML = `${determineFoodAmountEaten(10)}`;
+    document.getElementById('fries-num').innerHTML = `${determineFoodAmountEaten(12)}`;
+    document.getElementById('beer-num').innerHTML = `${determineFoodAmountEaten(15)}`;
+    document.getElementById('nugget-num').innerHTML = `${determineFoodAmountEaten(20)}`;
 
 }
 
@@ -35,13 +33,11 @@ function isAlive(total) {
         resultCaption.classList.add('has-text-danger');
         body.style.backgroundColor = 'hsla(348, 100%, 61%, 0.3)';
         return 'You ate too much and died. RIP';
-    }
-    else if (total >= 30) {
+    } else if (total >= 30) {
         resultCaption.classList.add('has-text-warning');
         body.style.backgroundColor = 'hsla(48, 100%, 67%, 0.15)';
         return 'Wow, you barely made it. Try not to eat so much next time!';
-    }
-    else {
+    } else {
         resultCaption.classList.add('has-text-primary');
         body.style.backgroundColor = 'hsla(171, 100%, 41%, 0.3)';
         return 'Congratulations! You ate all of the food and lived to tell the tale!';
@@ -52,7 +48,7 @@ function isAlive(total) {
 function showResult(result, caption) {
     const resultHeading = document.getElementById('result-heading');
     const resultCaption = document.getElementById('result-caption');
-    
+
 
     resultHeading.innerHTML = `You ate <span id="result-style">${result}</span> different items of food!`;
     resultCaption.innerHTML = `${caption}`;
@@ -60,11 +56,9 @@ function showResult(result, caption) {
     const resultStyle = document.getElementById('result-style');
     if (result >= 43) {
         resultStyle.classList.add('has-text-danger');
-    }
-    else if (result >= 30) {
+    } else if (result >= 30) {
         resultStyle.classList.add('has-text-warning');
-    }
-    else {
+    } else {
         resultStyle.classList.add('has-text-primary');
     }
 }
@@ -76,13 +70,13 @@ function handleBtnStyling() {
     playBtn.classList.toggle('is-light')
     playBtn.disabled = true;
 
-    resetBtn.disabled= false;
+    resetBtn.disabled = false;
     resetBtn.classList.toggle('is-light');
 }
 
 function handleBoxContents() {
     let headings = document.getElementsByTagName('h4');
-    for(let i = 0; i < headings.length; i++) {
+    for (let i = 0; i < headings.length; i++) {
         headings[i].classList.add('has-text-white');
     }
     let descriptions = document.querySelectorAll('.box p:nth-child(3)');
@@ -90,10 +84,10 @@ function handleBoxContents() {
         descriptions[i].classList.add('has-text-white');
     }
     let svgs = document.getElementsByTagName('svg');
-    
+
     for (let i = 0; i < svgs.length; i++) {
         svgs[i].style.fill = '#FFFFFF';
-        setTimeout(function() {
+        setTimeout(function () {
             svgs[i].classList.add('spin');
             svgs[i].style.width = '75%';
         }, i * 250);
@@ -108,7 +102,7 @@ function handleBoxContents() {
 
 function resetBoxContents() {
     let headings = document.getElementsByTagName('h4');
-    for(let i = 0; i < headings.length; i++) {
+    for (let i = 0; i < headings.length; i++) {
         headings[i].classList.remove('has-text-white');
     }
     let descriptions = document.querySelectorAll('.box p:nth-child(3)');
@@ -130,36 +124,32 @@ function resetBoxContents() {
     descriptions[5].innerHTML = 'How many chicken nuggets did you eat?';
 }
 
-function changeBoxBackground(idOfFoodItem,amountOfFoodPossible) {
+function changeBoxBackground(idOfFoodItem, amountOfFoodPossible) {
     let foodEaten = parseInt(document.getElementById(idOfFoodItem).innerHTML);
     let box = document.getElementById(idOfFoodItem).parentNode;
-        
+
     if (foodEaten >= Math.round(0.7 * amountOfFoodPossible)) {
         box.classList.add('has-background-danger');
-    }
-    else if (foodEaten >= Math.round(0.45 * amountOfFoodPossible)) {
+    } else if (foodEaten >= Math.round(0.45 * amountOfFoodPossible)) {
         box.classList.add('has-background-warning');
-    }
-    else {
+    } else {
         box.classList.add('has-background-primary');
     }
 }
 
 function changeAmountDescription() {
-    let arrayOfPossibilities = [4,6,10,12,15,20];
+    let arrayOfPossibilities = [4, 6, 10, 12, 15, 20];
     let arrayOfFoodValues = document.querySelectorAll('p:nth-child(4)');
     for (let i = 0; i < arrayOfFoodValues.length; i++) {
         let foodValue = parseInt(arrayOfFoodValues[i].innerHTML);
         let description = arrayOfFoodValues[i].nextElementSibling;
         description.classList.add('has-text-white', 'subtitle', 'is-6');
 
-        if (foodValue >=  Math.round(0.7 * arrayOfPossibilities[i])) {
+        if (foodValue >= Math.round(0.7 * arrayOfPossibilities[i])) {
             document.getElementsByClassName('resulting-text')[i].innerHTML = 'Too much :\'(';
-        }
-        else if (foodValue >= Math.round(0.45 * arrayOfPossibilities[i])) {
+        } else if (foodValue >= Math.round(0.45 * arrayOfPossibilities[i])) {
             document.getElementsByClassName('resulting-text')[i].innerHTML = 'That\'s a lot.. :/';
-        }
-        else {
+        } else {
             document.getElementsByClassName('resulting-text')[i].innerHTML = 'Yum :)';
         }
     }
@@ -168,7 +158,7 @@ function changeAmountDescription() {
 function resetBoxBackground(idOfFoodItem) {
     let foodItem = document.getElementById(idOfFoodItem);
     const body = document.getElementById('body');
-    foodItem.parentNode.classList.remove('has-background-danger','has-background-warning','has-background-primary');
+    foodItem.parentNode.classList.remove('has-background-danger', 'has-background-warning', 'has-background-primary');
     foodItem.parentNode.classList.add('has-background-white');
     body.style.backgroundColor = '#FFFFFF';
 
@@ -179,10 +169,10 @@ function resetBoxBackground(idOfFoodItem) {
 
 }
 
-function enlargeNumbers () {
+function enlargeNumbers() {
     let values = document.querySelectorAll('p:nth-child(4)');
     for (let i = 0; i < values.length; i++) {
-        
+
         setTimeout(function () {
             values[i].classList.add('enlarge');
         }, i * 250);
@@ -191,7 +181,7 @@ function enlargeNumbers () {
 
 
 
-function resetFoodAmounts () {
+function resetFoodAmounts() {
     document.getElementById('hotdog-num').innerHTML = ``;
     document.getElementById('burger-num').innerHTML = ``;
     document.getElementById('bigmac-num').innerHTML = ``;
@@ -209,16 +199,16 @@ function resetResults() {
     const resultCaption = document.getElementById('result-caption');
     resultHeading.innerHTML = `How much food did you eat?`;
     resultCaption.innerHTML = `Click play to find out!`;
-    resultCaption.classList.remove('has-text-primary','has-text-warning','has-text-danger');
-    resultHeading.classList.remove('has-text-primary','has-text-warning','has-text-danger');
+    resultCaption.classList.remove('has-text-primary', 'has-text-warning', 'has-text-danger');
+    resultHeading.classList.remove('has-text-primary', 'has-text-warning', 'has-text-danger');
 }
 
 function resetButtons() {
     const playBtn = document.getElementById('play-btn');
     const resetBtn = document.getElementById('reset-btn');
 
-    playBtn.disabled=false;
-    resetBtn.disabled=true;
+    playBtn.disabled = false;
+    resetBtn.disabled = true;
 
     playBtn.classList.toggle('is-light');
 
@@ -229,10 +219,10 @@ function resetButtons() {
 
 function playGame() {
     displayFoodAmounts();
-    
+
     let result = getTotalFoodAmount();
     let caption = isAlive(result);
-    showResult(result,caption);
+    showResult(result, caption);
     handleBoxContents();
     changeBoxBackground('hotdog-num', 4);
     changeAmountDescription();
@@ -255,7 +245,7 @@ function playGame() {
     enlargeNumbers();
 
     handleBtnStyling();
-    
+
 }
 
 function resetGame() {
@@ -282,4 +272,3 @@ playBtn.addEventListener('click', playGame);
 
 const resetBtn = document.getElementById('reset-btn');
 resetBtn.addEventListener('click', resetGame);
-
